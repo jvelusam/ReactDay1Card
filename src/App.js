@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Container } from "reactstrap";
+import ProductList from "./productlist";
+import products from "./products.json";
+import Data from "./Data";
+import { useState } from "react";
 
 function App() {
+  const [cartItems, setcartItems] = useState([]);
+
+  const addTocart = (product) => {
+    setcartItems([...cartItems, product]);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+       <Container mt="5">
+      <Data cartItems={cartItems} />
+      <ProductList products={products} addTocart={addTocart} />
+    </Container>
     </div>
   );
 }
